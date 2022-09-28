@@ -32,3 +32,23 @@ function validAnagram(str1, str2) {
 
   return true
 }
+
+function validAnagram2(str1,str2) {
+  if (str1.length != str2.length) {
+    return false
+  }
+
+  let obj = {}
+  for (let value of str1){
+    obj[value] = (obj[value] || 0) + 1
+  }
+
+  for (let value of str2){
+    if (!obj[value]){
+      return false
+    }
+    obj[value] -= 1
+  }
+
+  return true
+}

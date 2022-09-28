@@ -51,7 +51,7 @@ function refactorCompare(arr1, arr2) {
     obj2[value] = (obj2[value] || 0) + 1
   }
 
-  for ( key in arr1){
+  for (let key in arr1){
     if (!(key**2 in obj2)){
       return false
     }
