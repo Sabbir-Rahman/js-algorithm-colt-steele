@@ -1,6 +1,6 @@
 // if swap is costly then selection sort is better than bubble sort
 
-function insertionSort(ar) {
+function selectionSort(ar) {
   let minIndex
   for (let i = 0; i < ar.length; i++) {
     minIndex = i
