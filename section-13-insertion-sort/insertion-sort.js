@@ -3,7 +3,7 @@
 function insertionSort(ar){
   for (let i=1;i<ar.length;i++){
     var currentval = ar[i]
-    for(var j=i-1;i>=0 && ar[j]>currentval;j--){
+    for(var j=i-1;j>=0 && ar[j]>currentval;j--){
       ar[j+1]= ar[j]
     }
     ar[j+1] = currentval
