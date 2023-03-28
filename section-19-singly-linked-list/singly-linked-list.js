@@ -29,7 +29,7 @@ class SinglyLinkedList{
     let current = this.head
     if (this.length ==1){
       this.head = null
-      this.head.next = null
+      this.tail = null
       this.length --
       return current
     }
@@ -43,12 +43,37 @@ class SinglyLinkedList{
     
     return current
   }
+  unshift(val){
+    const newNode = new Node(val)
+    if(!this.head){
+      this.head = newNode
+      this.tail = this.head
+    }else {
+      newNode.next = this.head
+      this.head = newNode
+    }
+    
+    this.length ++
+    return this
+  }
+  shift(){
+    const prevHead = this.head
+    if(!this.head) return undefined
+    if(this.length == 1){
+      this.tail = null
+    }
+    this.head = prevHead.next
+    
+    
+    this.length --
+    return prevHead 
+  }
 }
 
 const s1 = new SinglyLinkedList()
 s1.push(2)
-s1.push(3)
-s1.push(1)
+s1.unshift(3)
+// s1.push(1)
 
-console.log(s1.pop())
+console.log(s1.shift())
 console.log(s1)
