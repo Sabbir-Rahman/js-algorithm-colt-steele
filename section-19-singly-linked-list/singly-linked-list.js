@@ -119,15 +119,51 @@ class SinglyLinkedList{
       return removeNode
     }
   }
+  print(){
+    const ar = []
+    let current = this.head
+    while(current.next){
+      ar.push(current.val)
+      current = current.next
+    }
+    ar.push(this.tail.val)
+    console.log(ar)
+  }
+  reverse(){
+    var node = this.head
+    this.head = this.tail
+    this.tail = node
+    var prev = null
+    var next;
+
+    for (let i=0;i<this.length;i++){
+      // to track the travarse iterator
+      next = node.next
+      // previous elemnt will be the new next for reverse
+      node.next = prev
+
+      // moving to nextnode and delare current node as prev node
+      prev = node
+      node = next
+      
+    }
+    return this
+    
+  }
+  
 }
 
 const s1 = new SinglyLinkedList()
 s1.push(2)
 s1.push(3)
 s1.push(1)
-s1.insert(1,10)
-s1.remove(1)
+// s1.insert(1,10)
+// s1.remove(1)
 
 // console.log(s1.shift())
 // console.log(s1.set(4,2))
-console.log(s1)
+// console.log(s1)
+s1.print()
+s1.reverse2()
+// console.log(s1)
+s1.print()
