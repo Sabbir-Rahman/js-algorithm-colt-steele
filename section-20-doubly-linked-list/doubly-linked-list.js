@@ -123,7 +123,9 @@ class DoublyLinkedList {
   }
 
   remove(index) {
-    let foundNode = this.get(index)
+    if (index<0||index> this.length) return false
+    if (index === 0) return this.unshift(val)
+    let foundNode = this.get(index-1)
     if (foundNode) {
       let prevNode = foundNode.prev
       let nextNode = foundNode.next
