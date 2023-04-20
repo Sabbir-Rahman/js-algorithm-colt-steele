@@ -1,15 +1,109 @@
 class Node {
-  constructor(val){
+  constructor(val) {
     this.val = val
     this.prev = null
     this.next = null
   }
 }
 
-class DoublyLinkedList{
-  constructor(){
+class DoublyLinkedList {
+  constructor() {
     this.head = null
     this.tail = null
     this.length = 0
   }
+
+  push(val) {
+    const newNode = new Node(val)
+    if (this.length == 0) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      let prevTail = this.tail
+      prevTail.next = newNode
+      newNode.prev = prevTail
+      this.tail = newNode
+    }
+
+    this.length++
+    return newNode
+  }
+
+  pop() {
+    if (this.length == 0) return undefined
+    if (this.length == 1) {
+      this.head = null
+      this.tail = null
+    } else {
+      const oldTail = this.tail
+      const newTail = oldTail.prev
+
+      newTail.next = null
+      this.tail = newTail
+    }
+    this.length--
+
+    return oldTail
+  }
+
+  shift() {
+    if (this.length == 0) return undefined
+    if (this.length == 1) {
+      this.head = null
+      this.tail = null
+    } else {
+      const oldHead = this.head
+      const newHead = oldHead.next
+
+      newHead.prev = null
+      this.head = newHead
+    }
+
+    this.length--
+  }
+
+  unshift(val) {
+    const newNode = new Node(val)
+    if (this.length == 0) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      newNode.next = this.head
+      this.head.prev = newNode
+      this.head = newNode
+    }
+    this.length++
+    return newNode
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined
+    if (index < this.length / 2) {
+      let count = this.length - 1
+      let currentIndex = this.tail
+      while (count != index) {
+        currentIndex = currentIndex.prev
+        count--
+      }
+      return currentIndex
+    } else {
+      let count = 0
+      let currentIndex = this.head
+      while (count != index) {
+        currentIndex = currentIndex.next
+        count++
+      }
+      return currentIndex
+    }
+  }
 }
+
+const d1 = new DoublyLinkedList()
+
+d1.push(2)
+d1.push(3)
+d1.push(1)
+d1.unshift(4)
+d1.unshift(2)
+
+console.log(d1.get(2))
