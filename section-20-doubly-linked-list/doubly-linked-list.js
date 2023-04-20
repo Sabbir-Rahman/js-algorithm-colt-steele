@@ -96,6 +96,31 @@ class DoublyLinkedList {
       return currentIndex
     }
   }
+
+  set(index,val){
+    let foundNode = this.get(index)
+    if (foundNode){
+      foundNode.val = val
+      return true
+    } else {
+      false
+    }
+  }
+
+  insert(index,val){
+    let foundNode = this.get(index)
+    const newNode = new Node(val)
+    if (foundNode){
+      let prevNode = foundNode
+      let nextNode = foundNode.next
+      prevNode.next = newNode
+      newNode.prev = foundNode
+      newNode.next = nextNode
+      nextNode.prev = newNode
+      return true
+    } else 
+      return false
+  }
 }
 
 const d1 = new DoublyLinkedList()
@@ -103,7 +128,7 @@ const d1 = new DoublyLinkedList()
 d1.push(2)
 d1.push(3)
 d1.push(1)
-d1.unshift(4)
-d1.unshift(2)
-
-console.log(d1.get(2))
+// d1.unshift(4)
+// d1.unshift(2)
+d1.insert(0,4)
+console.log(d1)
