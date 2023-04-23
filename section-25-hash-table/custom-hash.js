@@ -11,11 +11,11 @@ function customHash(key, len){
 }
 
 class HashTable {
-  constructor(size=17){
+  constructor(size = 17) {
     this.keyMap = new Array(size)
   }
 
-  _hash (key){
+  _hash(key) {
     let total = 0
     const WEIRD_PRIME = 31
     for (let i = 0; i < Math.min(100, key.length); i++) {
@@ -27,24 +27,50 @@ class HashTable {
     return total
   }
 
-  set (key,value){
+  set(key, value) {
     let index = this._hash(key)
-    if (!this.keyMap[index]){
+    if (!this.keyMap[index]) {
       this.keyMap[index] = []
     }
-    this.keyMap[index].push([key,value])
+    this.keyMap[index].push([key, value])
   }
 
-  get (key){
+  get(key) {
     let index = this._hash(key)
-    if (this.keyMap[index]){
-      for (let i=0;i<this.keyMap[index].length;i++){
-        if(this.keyMap[index][i][0]===key){
+    if (this.keyMap[index]) {
+      for (let i = 0; i < this.keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] === key) {
           return this.keyMap[index][i]
         }
       }
     }
 
     return undefined
+  }
+  keys() {
+    let keysArr = []
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!keysArr.includes(this.keyMap[i][j][0])) {
+            keysArr.push(this.keyMap[i][j][0])
+          }
+        }
+      }
+    }
+    return keysArr
+  }
+  values() {
+    let valuesArr = []
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!valuesArr.includes(this.keyMap[i][j][1])) {
+            valuesArr.push(this.keyMap[i][j][1])
+          }
+        }
+      }
+    }
+    return valuesArr
   }
 } 
