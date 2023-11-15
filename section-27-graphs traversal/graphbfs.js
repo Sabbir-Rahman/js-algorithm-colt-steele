@@ -25,27 +25,25 @@ class Graph {
         delete this.adjacancyList[vertex]
     }
 
-    depthFirstRecursive(start) {
-        if (!start) return null
-        const result = []
+    breadthFirstSearch(start) {
+        const queue = [start]
         const visited = {}
-        const adjacancyList = this.adjacancyList
+        const res = []
+        let currentVertex
+        visited[start] = true
 
-        function dfs(vertex){
-            
-            visited[vertex] = true
-            result.push(vertex)
-            adjacancyList[vertex].forEach(neighbor => {
+        while(queue.length){
+            currentVertex = queue.shift()
+            visited[currentVertex] = true
+            res.push(currentVertex)
+            this.adjacancyList[currentVertex].forEach(neighbor => {
                 if(!visited[neighbor]){
-                    return dfs(neighbor)
+                    queue.push(currentVertex)
                 }
             });
-            
         }
 
-        dfs(start)
-
-        return result
+        return res
     }
 }
 
