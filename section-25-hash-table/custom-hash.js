@@ -20,7 +20,7 @@ class HashTable {
     const WEIRD_PRIME = 31
     for (let i = 0; i < Math.min(100, key.length); i++) {
       let char = key[i]
-      let value = char.charCodeTa(0) - 96
+      let value = char.charCodeAt(0) - 96
       total += (total * WEIRD_PRIME + value) % this.keyMap.length
     }
 
